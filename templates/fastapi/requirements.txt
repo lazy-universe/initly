@@ -1,0 +1,6 @@
+fastapi
+fastapi-cli
+
+# testing dependecies
+httpx
+pytest
