@@ -41,6 +41,18 @@ const main = async () => {
     });
     console.log(chalk.yellow("📦 MERN template generated in /initly-output"));
   }
+  if (answers.stack === "Next.js") {
+  const srcDir = path.join(__dirname, "templates", "nextjs");
+  const destDir = projectPath;
+
+  try {
+    // Recursively copy entire folder structure
+    fs.cpSync(srcDir, destDir, { recursive: true });
+    console.log(chalk.yellow("📦 Next.js template generated in /initly-output"));
+  } catch (err) {
+    console.error(chalk.red("❌ Failed to copy Next.js template:"), err);
+  }
+}
 
   console.log(chalk.cyanBright("\n✅ Setup complete! Check the 'initly-output' folder.\n"));
 };
