@@ -1,0 +1,24 @@
+{
+  "name": "initly",
+  "version": "1.0.0",
+  "description": "A CLI to initialize infrastructure for any project in seconds.",
+  "main": "index.js",
+  "bin": {
+    "initly": "./index.js"
+  },
+  "type": "module",
+  "keywords": [
+    "cli",
+    "infrastructure",
+    "automation",
+    "setup",
+    "docker",
+    "devops"
+  ],
+  "author": "Anup Kumar",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "inquirer": "^10.2.2"
+  }
+}
