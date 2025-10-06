@@ -22,7 +22,7 @@ const main = async () => {
       type: "list",
       name: "stack",
       message: chalk.cyan.bold("🚀 Choose your tech stack:"),
-      choices: ["MERN", "Next.js", "Express + PostgreSQL", "Django"],
+      choices: ["MERN", "Next.js", "FastAPI", "Express + PostgreSQL", "Django"],
     },
     {
       type: "confirm",
@@ -63,6 +63,18 @@ const main = async () => {
     console.error(chalk.red("❌ Failed to copy Next.js template:"), err);
   }
 }
+
+  if (answers.stack === "FastAPI") {
+    const srcDir = path.join(__dirname, "templates", "fastapi");
+    const destDir = projectPath;
+
+    try {
+      fs.cpSync(srcDir, destDir, { recursive: true });
+      console.log(chalk.yellow("\n  📦 FastAPI template generated in /initly-output"));
+    } catch (err) {
+      console.error(chalk.red("❌ Failed to copy FastAPI template:"), err);
+    }
+  }
 
   spinner.text = chalk.yellow("⚙️ Configuring project settings...");
   await new Promise(res => setTimeout(res, 1000));

@@ -1,0 +1,28 @@
+# Bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.env
+
+# Tooling
+*.log
+*.sqlite3
+*.db
+*.pid
+
+# Test and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editors
+.vscode/
+.idea/
+
+# Mypy / type checking
+.mypy_cache/
+
+# Pydantic cache
+__pydantic_cache__/
