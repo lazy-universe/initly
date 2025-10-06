@@ -4,33 +4,43 @@ import chalk from "chalk";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import ora from "ora";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-console.log(chalk.cyanBright.bold("\n🚀 Welcome to Initly — Your Infra Setup Companion!\n"));
+console.log(chalk.cyanBright.bold(`
+╔══════════════════════════════════╗
+║           ${chalk.yellow("INITLY")} 🚀              ║
+║    Your Infra Setup Companion    ║
+╚══════════════════════════════════╝
+`));
 
 const main = async () => {
   const answers = await inquirer.prompt([
     {
       type: "list",
       name: "stack",
-      message: "Choose your tech stack:",
+      message: chalk.cyan.bold("🚀 Choose your tech stack:"),
       choices: ["MERN", "Next.js", "Express + PostgreSQL", "Django"],
     },
     {
       type: "confirm",
       name: "docker",
-      message: "Add Docker support?",
+      message: chalk.blue.bold("🐳 Add Docker support?"),
       default: true,
     },
   ]);
 
-  console.log(chalk.green("\n✨ Generating your project setup...\n"));
+  const spinner = ora(chalk.yellow("Generating your project setup...")).start();
+
 
   // Create project folder
   const projectPath = path.join(process.cwd(), "initly-output");
   if (!fs.existsSync(projectPath)) fs.mkdirSync(projectPath);
+
+  spinner.text = chalk.yellow("📦 Copying template files...");
+  await new Promise(res => setTimeout(res, 1000));
 
   // Copy MERN template
   if (answers.stack === "MERN") {
@@ -39,7 +49,7 @@ const main = async () => {
     files.forEach((file) => {
       fs.copyFileSync(path.join(srcDir, file), path.join(projectPath, file));
     });
-    console.log(chalk.yellow("📦 MERN template generated in /initly-output"));
+    console.log(chalk.yellow("\n 📦 MERN template generated in /initly-output"));
   }
   if (answers.stack === "Next.js") {
   const srcDir = path.join(__dirname, "templates", "nextjs");
@@ -54,7 +64,13 @@ const main = async () => {
   }
 }
 
-  console.log(chalk.cyanBright("\n✅ Setup complete! Check the 'initly-output' folder.\n"));
+  spinner.text = chalk.yellow("⚙️ Configuring project settings...");
+  await new Promise(res => setTimeout(res, 1000));
+
+  setTimeout(() => {
+    spinner.succeed(chalk.greenBright.bold(" Setup complete! Check the 'initly-output' folder.\n"));
+  }, 2000);
+
 };
 
 main();
