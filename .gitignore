@@ -31,3 +31,6 @@ Thumbs.db
 
 # MacOS system files
 *.swp
+
+# outputs
+initly-*
